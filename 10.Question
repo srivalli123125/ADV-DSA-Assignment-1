@@ -1,0 +1,53 @@
+class QueueUsingStacks {
+    constructor() {
+        this.stack1 = [];
+        this.stack2 = [];
+    }
+
+    // Enqueue operation
+    enqueue(value) {
+        this.stack1.push(value);
+    }
+
+    // Dequeue operation
+    dequeue() {
+        // If stack2 is empty, transfer elements from stack1
+        if (this.stack2.length === 0) {
+            while (this.stack1.length > 0) {
+                this.stack2.push(this.stack1.pop());
+            }
+        }
+
+        // If stack2 is still empty, the queue is empty
+        if (this.stack2.length === 0) {
+            return "Queue is empty";
+        }
+
+        // Pop from stack2 to dequeue
+        return this.stack2.pop();
+    }
+}
+
+// Example usage
+const queue = new QueueUsingStacks();
+
+console.log("Enqueue 1, 2, 3");
+queue.enqueue(1);
+queue.enqueue(2);
+queue.enqueue(3);
+
+console.log("Dequeue:", queue.dequeue()); // Output: 1
+
+console.log("Enqueue 4, 5");
+queue.enqueue(4);
+queue.enqueue(5);
+
+console.log("Dequeue:", queue.dequeue()); // Output: 2
+
+console.log("Dequeue:", queue.dequeue()); // Output: 3
+
+console.log("Dequeue:", queue.dequeue()); // Output: 4
+
+console.log("Dequeue:", queue.dequeue()); // Output: 5
+
+console.log("Dequeue:", queue.dequeue()); // Output: Queue is empty
