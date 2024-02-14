@@ -1,0 +1,41 @@
+function evaluatePostfix(expression) {
+    const stack = [];
+
+    for (let char of expression) {
+        if (!isNaN(char)) {
+            // If the character is a number, push it onto the stack
+            stack.push(parseInt(char));
+        } else {
+            // If the character is an operator, pop operands, perform operation, and push result back
+            const operand2 = stack.pop();
+            const operand1 = stack.pop();
+
+            switch (char) {
+                case '+':
+                    stack.push(operand1 + operand2);
+                    break;
+                case '-':
+                    stack.push(operand1 - operand2);
+                    break;
+                case '*':
+                    stack.push(operand1 * operand2);
+                    break;
+                case '/':
+                    stack.push(operand1 / operand2);
+                    break;
+            }
+        }
+    }
+
+    // The final result will be at the top of the stack
+    return stack.pop();
+}
+
+// Example usage
+const postfixExpression = "23*5+";
+
+console.log("Postfix Expression:", postfixExpression);
+
+const result = evaluatePostfix(postfixExpression);
+
+console.log("Result of Postfix Expression:", result);
