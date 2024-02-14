@@ -1,0 +1,57 @@
+class Node {
+    constructor(data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+
+function reverseInGroups(head, k) {
+    if (!head || k <= 1) {
+        return head;
+    }
+
+    let current = head;
+    let count = 0;
+
+    while (current) {
+        count++;
+        current = current.next;
+    }
+
+    if (count < k) {
+        return head;
+    }
+
+    current = head;
+    let prev = null;
+    let next = null;
+    let groupCount = 0;
+
+    while (current && groupCount < k) {
+        next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+        groupCount++;
+    }
+
+    if (next) {
+        head.next = reverseInGroups(next, k);
+    }
+
+    return prev;
+}
+const head = new Node(1);
+head.next = new Node(2);
+head.next.next = new Node(3);
+head.next.next.next = new Node(4);
+head.next.next.next.next = new Node(5);
+head.next.next.next.next.next = new Node(6);
+
+console.log("Original Linked List:");
+printLinkedList(head);
+
+const newHead = reverseInGroups(head, 3);
+
+console.log("\nLinked List after Reversing in Groups of 3:");
+printLinkedList(newHead);
