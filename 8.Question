@@ -1,0 +1,25 @@
+function reverseString(str) {
+    const stack = [];
+
+    // Push each character onto the stack
+    for (let char of str) {
+        stack.push(char);
+    }
+
+    // Pop characters from the stack to get the reversed string
+    let reversedString = "";
+    while (stack.length > 0) {
+        reversedString += stack.pop();
+    }
+
+    return reversedString;
+}
+
+// Example usage
+const inputString = "Hello, World!";
+
+console.log("Original String:", inputString);
+
+const reversedString = reverseString(inputString);
+
+console.log("Reversed String:", reversedString);
