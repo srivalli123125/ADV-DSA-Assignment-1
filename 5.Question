@@ -1,0 +1,21 @@
+function findDuplicates(arr) {
+    let duplicates = [];
+    let seenNumbers = new Set();
+
+    for (let num of arr) {
+        if (seenNumbers.has(num)) {
+            duplicates.push(num);
+        } else {
+            seenNumbers.add(num);
+        }
+    }
+
+    return duplicates;
+}
+
+// Example usage
+const array = [1, 2, 3, 4, 2, 5, 6, 1];
+const duplicateNumbers = findDuplicates(array);
+
+console.log("Array:", array);
+console.log("Duplicate Numbers:", duplicateNumbers);
