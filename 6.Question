@@ -1,0 +1,22 @@
+function findKthLargestAndSmallest(arr, k) {
+    if (k > arr.length || k <= 0) {
+        return "Invalid value of k";
+    }
+
+    const sortedArray = [...arr].sort((a, b) => a - b);
+
+    const kthSmallest = sortedArray[k - 1];
+    const kthLargest = sortedArray[arr.length - k];
+
+    return { kthSmallest, kthLargest };
+}
+
+// Example usage
+const array = [12, 5, 7, 19, 22, 8];
+const k = 3;
+
+const result = findKthLargestAndSmallest(array, k);
+
+console.log("Array:", array);
+console.log(Kth Smallest: ${result.kthSmallest});
+console.log(Kth Largest: ${result.kthLargest});
